@@ -54,7 +54,7 @@ jobs:
           git config --global user.name "SevenEarth"
           git checkout -b "feat/sync_provider_v${version}"
 
-          cd provider && go get -v github.com/tencentcloudstack/terraform-provider-tencentcloud@v${{ steps.generate-code.outputs.version }} && go mod tidy && cd -
+          cd provider && go get -v github.com/tencentcloudstack/terraform-provider-tencentcloud@v${version} && go mod tidy && cd -
           make tfgen
           make provider
           make build_sdks
