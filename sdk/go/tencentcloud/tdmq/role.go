@@ -40,7 +40,7 @@ import (
 //				return err
 //			}
 //			_, err = Tdmq.NewRole(ctx, "exampleRole", &Tdmq.RoleArgs{
-//				RoleName:  pulumi.String("role_example"),
+//				RoleName:  pulumi.String("tf_example"),
 //				ClusterId: exampleInstance.ID(),
 //				Remark:    pulumi.String("remark."),
 //			})
@@ -53,6 +53,14 @@ import (
 //
 // ```
 // <!--End PulumiCodeChooser -->
+//
+// ## Import
+//
+// Tdmq instance can be imported, e.g.
+//
+// ```sh
+// $ pulumi import tencentcloud:Tdmq/role:Role test tdmq_id
+// ```
 type Role struct {
 	pulumi.CustomResourceState
 

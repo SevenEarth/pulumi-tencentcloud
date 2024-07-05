@@ -24,10 +24,10 @@ namespace TencentCloudIAC.PulumiPackage.Tencentcloud.Tdmq
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Tencentcloud.Tdmq.Instance("example", new()
+    ///     var foo = new Tencentcloud.Tdmq.Instance("foo", new()
     ///     {
-    ///         ClusterName = "tf_example",
-    ///         Remark = "remark.",
+    ///         ClusterName = "example",
+    ///         Remark = "this is description.",
     ///         Tags = 
     ///         {
     ///             { "createdBy", "terraform" },
@@ -43,7 +43,7 @@ namespace TencentCloudIAC.PulumiPackage.Tencentcloud.Tdmq
     /// Tdmq instance can be imported, e.g.
     /// 
     /// ```sh
-    /// $ pulumi import tencentcloud:Tdmq/instance:Instance example pulsar-78bwjaj8epxv
+    /// $ pulumi import tencentcloud:Tdmq/instance:Instance test tdmq_id
     /// ```
     /// </summary>
     [TencentcloudResourceType("tencentcloud:Tdmq/instance:Instance")]

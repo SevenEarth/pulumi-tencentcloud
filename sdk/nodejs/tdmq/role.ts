@@ -22,12 +22,20 @@ import * as utilities from "../utilities";
  *     },
  * });
  * const exampleRole = new tencentcloud.tdmq.Role("exampleRole", {
- *     roleName: "role_example",
+ *     roleName: "tf_example",
  *     clusterId: exampleInstance.id,
  *     remark: "remark.",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
+ *
+ * ## Import
+ *
+ * Tdmq instance can be imported, e.g.
+ *
+ * ```sh
+ * $ pulumi import tencentcloud:Tdmq/role:Role test tdmq_id
+ * ```
  */
 export class Role extends pulumi.CustomResource {
     /**

@@ -9,70 +9,50 @@ import * as utilities from "../utilities";
 /**
  * Provides a resource to create a rocketmq 5.x instance
  *
- * > **NOTE:** It only supports create postpaid rocketmq 5.x instance.
+ * > **NOTE:** It only support create postpaid rocketmq 5.x instance.
  *
  * ## Example Usage
  *
- * ### Create Basic Instance
+ * ### Basic Instance
  *
  * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as tencentcloud from "@tencentcloud_iac/pulumi";
  *
- * // create vpc
- * const vpc = new tencentcloud.vpc.Instance("vpc", {cidrBlock: "10.0.0.0/16"});
- * // create vpc subnet
- * const subnet = new tencentcloud.subnet.Instance("subnet", {
- *     vpcId: vpc.id,
- *     availabilityZone: "ap-guangzhou-6",
- *     cidrBlock: "10.0.20.0/28",
- *     isMulticast: false,
- * });
- * // create rocketmq instance
- * const example = new tencentcloud.trocket.RocketmqInstance("example", {
- *     instanceType: "PRO",
- *     skuCode: "pro_4k",
+ * const rocketmqInstance = new tencentcloud.trocket.RocketmqInstance("rocketmqInstance", {
+ *     instanceType: "EXPERIMENT",
  *     remark: "remark",
- *     vpcId: vpc.id,
- *     subnetId: subnet.id,
+ *     skuCode: "experiment_500",
+ *     subnetId: "subnet-xxxxxx",
  *     tags: {
  *         tag_key: "rocketmq",
  *         tag_value: "5.x",
  *     },
+ *     vpcId: "vpc-xxxxxx",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
  *
- * ### Create Enable Public Network Instance
+ * ### Enable Public Instance
  *
  * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as tencentcloud from "@tencentcloud_iac/pulumi";
  *
- * // create vpc
- * const vpc = new tencentcloud.vpc.Instance("vpc", {cidrBlock: "10.0.0.0/16"});
- * // create vpc subnet
- * const subnet = new tencentcloud.subnet.Instance("subnet", {
- *     vpcId: vpc.id,
- *     availabilityZone: "ap-guangzhou-6",
- *     cidrBlock: "10.0.20.0/28",
- *     isMulticast: false,
- * });
- * // create rocketmq instance
- * const example = new tencentcloud.trocket.RocketmqInstance("example", {
- *     instanceType: "PRO",
- *     skuCode: "pro_4k",
- *     remark: "remark",
- *     vpcId: vpc.id,
- *     subnetId: subnet.id,
+ * const rocketmqInstancePublic = new tencentcloud.trocket.RocketmqInstance("rocketmqInstancePublic", {
+ *     bandwidth: 1,
  *     enablePublic: true,
- *     bandwidth: 10,
+ *     instanceType: "EXPERIMENT",
+ *     remark: "remark",
+ *     skuCode: "experiment_500",
+ *     subnetId: "subnet-xxxxxx",
  *     tags: {
  *         tag_key: "rocketmq",
  *         tag_value: "5.x",
  *     },
+ *     vpcId: "vpc-xxxxxx",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -82,7 +62,7 @@ import * as utilities from "../utilities";
  * trocket rocketmq_instance can be imported using the id, e.g.
  *
  * ```sh
- * $ pulumi import tencentcloud:Trocket/rocketmqInstance:RocketmqInstance rocketmq_instance rmq-n5qado7m
+ * $ pulumi import tencentcloud:Trocket/rocketmqInstance:RocketmqInstance rocketmq_instance rocketmq_instance_id
  * ```
  */
 export class RocketmqInstance extends pulumi.CustomResource {
@@ -146,7 +126,7 @@ export class RocketmqInstance extends pulumi.CustomResource {
      */
     public readonly remark!: pulumi.Output<string | undefined>;
     /**
-     * SKU code. Available specifications are as follows: experiment_500, basic_1k, basic_2k, basic_3k, basic_4k, basic_5k, basic_6k, basic_7k, basic_8k, basic_9k, basic_10k, pro_4k, pro_6k, pro_8k, pro_1w, pro_15k, pro_2w, pro_25k, pro_3w, pro_35k, pro_4w, pro_45k, pro_5w, pro_55k, pro_60k, pro_65k, pro_70k, pro_75k, pro_80k, pro_85k, pro_90k, pro_95k, pro_100k, platinum_1w, platinum_2w, platinum_3w, platinum_4w, platinum_5w, platinum_6w, platinum_7w, platinum_8w, platinum_9w, platinum_10w, platinum_12w, platinum_14w, platinum_16w, platinum_18w, platinum_20w, platinum_25w, platinum_30w, platinum_35w, platinum_40w, platinum_45w, platinum_50w, platinum_60w, platinum_70w, platinum_80w, platinum_90w, platinum_100w.
+     * SKU code. Available specifications are as follows: experiment_500, basic_1k, basic_2k, basic_4k, basic_6k.
      */
     public readonly skuCode!: pulumi.Output<string>;
     /**
@@ -262,7 +242,7 @@ export interface RocketmqInstanceState {
      */
     remark?: pulumi.Input<string>;
     /**
-     * SKU code. Available specifications are as follows: experiment_500, basic_1k, basic_2k, basic_3k, basic_4k, basic_5k, basic_6k, basic_7k, basic_8k, basic_9k, basic_10k, pro_4k, pro_6k, pro_8k, pro_1w, pro_15k, pro_2w, pro_25k, pro_3w, pro_35k, pro_4w, pro_45k, pro_5w, pro_55k, pro_60k, pro_65k, pro_70k, pro_75k, pro_80k, pro_85k, pro_90k, pro_95k, pro_100k, platinum_1w, platinum_2w, platinum_3w, platinum_4w, platinum_5w, platinum_6w, platinum_7w, platinum_8w, platinum_9w, platinum_10w, platinum_12w, platinum_14w, platinum_16w, platinum_18w, platinum_20w, platinum_25w, platinum_30w, platinum_35w, platinum_40w, platinum_45w, platinum_50w, platinum_60w, platinum_70w, platinum_80w, platinum_90w, platinum_100w.
+     * SKU code. Available specifications are as follows: experiment_500, basic_1k, basic_2k, basic_4k, basic_6k.
      */
     skuCode?: pulumi.Input<string>;
     /**
@@ -316,7 +296,7 @@ export interface RocketmqInstanceArgs {
      */
     remark?: pulumi.Input<string>;
     /**
-     * SKU code. Available specifications are as follows: experiment_500, basic_1k, basic_2k, basic_3k, basic_4k, basic_5k, basic_6k, basic_7k, basic_8k, basic_9k, basic_10k, pro_4k, pro_6k, pro_8k, pro_1w, pro_15k, pro_2w, pro_25k, pro_3w, pro_35k, pro_4w, pro_45k, pro_5w, pro_55k, pro_60k, pro_65k, pro_70k, pro_75k, pro_80k, pro_85k, pro_90k, pro_95k, pro_100k, platinum_1w, platinum_2w, platinum_3w, platinum_4w, platinum_5w, platinum_6w, platinum_7w, platinum_8w, platinum_9w, platinum_10w, platinum_12w, platinum_14w, platinum_16w, platinum_18w, platinum_20w, platinum_25w, platinum_30w, platinum_35w, platinum_40w, platinum_45w, platinum_50w, platinum_60w, platinum_70w, platinum_80w, platinum_90w, platinum_100w.
+     * SKU code. Available specifications are as follows: experiment_500, basic_1k, basic_2k, basic_4k, basic_6k.
      */
     skuCode: pulumi.Input<string>;
     /**

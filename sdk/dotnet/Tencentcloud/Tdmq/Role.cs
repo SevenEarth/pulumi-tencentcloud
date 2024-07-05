@@ -36,7 +36,7 @@ namespace TencentCloudIAC.PulumiPackage.Tencentcloud.Tdmq
     /// 
     ///     var exampleRole = new Tencentcloud.Tdmq.Role("exampleRole", new()
     ///     {
-    ///         RoleName = "role_example",
+    ///         RoleName = "tf_example",
     ///         ClusterId = exampleInstance.Id,
     ///         Remark = "remark.",
     ///     });
@@ -44,6 +44,14 @@ namespace TencentCloudIAC.PulumiPackage.Tencentcloud.Tdmq
     /// });
     /// ```
     /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ## Import
+    /// 
+    /// Tdmq instance can be imported, e.g.
+    /// 
+    /// ```sh
+    /// $ pulumi import tencentcloud:Tdmq/role:Role test tdmq_id
+    /// ```
     /// </summary>
     [TencentcloudResourceType("tencentcloud:Tdmq/role:Role")]
     public partial class Role : global::Pulumi.CustomResource
