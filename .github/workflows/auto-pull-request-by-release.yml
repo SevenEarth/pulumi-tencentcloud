@@ -52,9 +52,9 @@ jobs:
           cd pulumi-tencentcloud
           git config --global user.email "391613297@qq.com"
           git config --global user.name "SevenEarth"
-          git checkout -b "feat/sync_provider_${version}"
+          git checkout -b "feat/sync_provider_v${version}"
 
-          cd provider && go get -v github.com/tencentcloudstack/terraform-provider-tencentcloud@$${{ steps.generate-code.outputs.version }} && go mod tidy && cd -
+          cd provider && go get -v github.com/tencentcloudstack/terraform-provider-tencentcloud@v${{ steps.generate-code.outputs.version }} && go mod tidy && cd -
           make tfgen
           make provider
           make build_sdks
@@ -62,11 +62,11 @@ jobs:
           
           git add .
           git commit -sm "sync provider"
-          git push origin feat/sync_provider_${version}
+          git push origin feat/sync_provider_v${version}
           
       - name: create pull request
         run: |
           cd pulumi-tencentcloud
-          gh pr create -B main -H feat/sync_provider_${{ steps.generate-code.outputs.version }} --title "sync terraform provider" --body "sync terraform provider version to ${{ steps.update-code.outputs.version }}"
+          gh pr create -B main -H feat/sync_provider_v${{ steps.generate-code.outputs.version }} --title "sync terraform provider" --body "sync terraform provider version to v${{ steps.update-code.outputs.version }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
