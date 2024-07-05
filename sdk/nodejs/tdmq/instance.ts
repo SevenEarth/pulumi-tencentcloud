@@ -14,9 +14,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as tencentcloud from "@tencentcloud_iac/pulumi";
  *
- * const example = new tencentcloud.tdmq.Instance("example", {
- *     clusterName: "tf_example",
- *     remark: "remark.",
+ * const foo = new tencentcloud.tdmq.Instance("foo", {
+ *     clusterName: "example",
+ *     remark: "this is description.",
  *     tags: {
  *         createdBy: "terraform",
  *     },
@@ -29,7 +29,7 @@ import * as utilities from "../utilities";
  * Tdmq instance can be imported, e.g.
  *
  * ```sh
- * $ pulumi import tencentcloud:Tdmq/instance:Instance example pulsar-78bwjaj8epxv
+ * $ pulumi import tencentcloud:Tdmq/instance:Instance test tdmq_id
  * ```
  */
 export class Instance extends pulumi.CustomResource {

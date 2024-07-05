@@ -146,11 +146,19 @@ class Role(pulumi.CustomResource):
                 "createdBy": "terraform",
             })
         example_role = tencentcloud.tdmq.Role("exampleRole",
-            role_name="role_example",
+            role_name="tf_example",
             cluster_id=example_instance.id,
             remark="remark.")
         ```
         <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        Tdmq instance can be imported, e.g.
+
+        ```sh
+        $ pulumi import tencentcloud:Tdmq/role:Role test tdmq_id
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -181,11 +189,19 @@ class Role(pulumi.CustomResource):
                 "createdBy": "terraform",
             })
         example_role = tencentcloud.tdmq.Role("exampleRole",
-            role_name="role_example",
+            role_name="tf_example",
             cluster_id=example_instance.id,
             remark="remark.")
         ```
         <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        Tdmq instance can be imported, e.g.
+
+        ```sh
+        $ pulumi import tencentcloud:Tdmq/role:Role test tdmq_id
+        ```
 
         :param str resource_name: The name of the resource.
         :param RoleArgs args: The arguments to use to populate this resource's properties.

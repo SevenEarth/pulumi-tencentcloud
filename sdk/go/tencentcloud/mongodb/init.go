@@ -29,10 +29,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &InstanceBackup{}
 	case "tencentcloud:Mongodb/instanceBackupDownloadTask:InstanceBackupDownloadTask":
 		r = &InstanceBackupDownloadTask{}
-	case "tencentcloud:Mongodb/instanceBackupRule:InstanceBackupRule":
-		r = &InstanceBackupRule{}
-	case "tencentcloud:Mongodb/instanceTransparentDataEncryption:InstanceTransparentDataEncryption":
-		r = &InstanceTransparentDataEncryption{}
 	case "tencentcloud:Mongodb/shardingInstance:ShardingInstance":
 		r = &ShardingInstance{}
 	case "tencentcloud:Mongodb/standbyInstance:StandbyInstance":
@@ -68,16 +64,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"tencentcloud",
 		"Mongodb/instanceBackupDownloadTask",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"tencentcloud",
-		"Mongodb/instanceBackupRule",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"tencentcloud",
-		"Mongodb/instanceTransparentDataEncryption",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

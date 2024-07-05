@@ -41,6 +41,14 @@ import * as utilities from "../utilities";
  * });
  * ```
  * <!--End PulumiCodeChooser -->
+ *
+ * ## Import
+ *
+ * Tdmq Topic can be imported, e.g.
+ *
+ * ```sh
+ * $ pulumi import tencentcloud:Tdmq/topic:Topic test topic_id
+ * ```
  */
 export class Topic extends pulumi.CustomResource {
     /**
