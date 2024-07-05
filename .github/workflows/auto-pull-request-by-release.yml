@@ -48,13 +48,13 @@ jobs:
           version=`curl https://api.github.com/repos/tencentcloudstack/terraform-provider-tencentcloud/releases/latest --header 'Accept: application/vnd.github+json' --header 'Authorization: Bearer ${{secrets.GITHUB_TOKEN}}' | jq .name | tr -d '"' | tr -d 'v'`
           echo "version=$version" >> "$GITHUB_OUTPUT"
           
-          git clone https://SevenEarth:${{secrets.GITHUB_TOKEN}}@github.com:SevenEarth/pulumi-tencentcloud.git
+          git clone https://SevenEarth:${{secrets.GITHUB_TOKEN}}@github.com/SevenEarth/pulumi-tencentcloud.git
           cd pulumi-tencentcloud
           git config --global user.email "391613297@qq.com"
           git config --global user.name "SevenEarth"
           git checkout -b "feat/sync_provider_${version}"
-          
-          cd provider && go mod tidy && cd -
+
+          cd provider && go get -v github.com/tencentcloudstack/terraform-provider-tencentcloud@${{version}} && go mod tidy && cd -
           make tfgen
           make provider
           make build_sdks
