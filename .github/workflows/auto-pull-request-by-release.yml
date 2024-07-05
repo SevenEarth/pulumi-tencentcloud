@@ -3,10 +3,10 @@ name: Auto Pull Request By Release
 on:
   repository_dispatch:
     types: [ webhook ]
-    
+
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  
+
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -54,7 +54,7 @@ jobs:
           git config --global user.name "SevenEarth"
           git checkout -b "feat/sync_provider_v${version}"
 
-          cd provider && go get -v github.com/tencentcloudstack/terraform-provider-tencentcloud@v${version} && go mod tidy && cd -
+          cd provider && go get -v github.com/tencentcloudstack/terraform-provider-tencentcloud@v1.81.105 && go mod tidy && cd -
           make tfgen
           make provider
           make build_sdks
@@ -63,7 +63,7 @@ jobs:
           git add .
           git commit -sm "sync provider"
           git push origin feat/sync_provider_v${version}
-          
+
       - name: create pull request
         run: |
           cd pulumi-tencentcloud
